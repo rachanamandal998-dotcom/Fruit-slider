@@ -1,0 +1,114 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+/* LEFT */
+.left {
+  color: white;
+}
+
+.fruit-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.fruit-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.left h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.left p {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.counter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+justify-content:center;
+align-items:center;
+}
+
+.counter button {
+  padding: 5px 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.buttons button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+/* CENTER */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-bottle {
+  width: 220px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* RIGHT */
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; /* important fix */
+}
+
+.next-bottle {
+  width: 180px;
+  height: 360px;
+  object-fit: cover;
+  opacity: 0.6;
+  transform: translateX(20px); /* reduced from 80px */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .right {
+    display: none;
+  }
+
+  .main-bottle {
+    width: 180px;
+    height: 320px;
+  }
+}

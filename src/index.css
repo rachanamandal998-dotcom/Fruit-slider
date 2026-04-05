@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.slider-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.left-section {
+  text-align: center;
+}
+
+.fruit-img {
+  width: 200px;
+  border-radius: 20px;
+}
+
+.main-bottle {
+  width: 220px;
+}
+
+.half-bottle {
+  width: 150px;
+  opacity: 0.7;
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  bottom: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: 30px;
+}
+
+.next-btn {
+  right: 30px;
+}
+
+@media (max-width: 768px) {
+  .slider-container {
+    flex-direction: column;
+  }
+
+  .main-bottle {
+    width: 180px;
+  }
+
+  .half-bottle {
+    width: 100px;
+  }
+}
