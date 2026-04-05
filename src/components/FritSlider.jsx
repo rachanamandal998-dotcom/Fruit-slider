@@ -15,7 +15,8 @@ const fruits = [
     name: "Apple",
     color: "#ef4444",
     price: 300,
-    fruitImg: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce",
+    fruitImg:
+      "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce",
     bottle:
       "https://png.pngtree.com/png-vector/20240129/ourmid/pngtree-bottle-of-juice-apple-isolated-png-ai-generative-png-image_11565393.png",
   },
@@ -23,7 +24,8 @@ const fruits = [
     name: "Mango",
     color: "#f59e0b",
     price: 230,
-    fruitImg: "https://images.unsplash.com/photo-1553279768-865429fa0078",
+    fruitImg:
+      "https://images.unsplash.com/photo-1553279768-865429fa0078",
     bottle:
       "https://c8.alamy.com/comp/WWGXR5/bottle-and-glass-of-tasty-mango-juice-on-white-background-WWGXR5.jpg",
   },
@@ -31,7 +33,8 @@ const fruits = [
     name: "Grape",
     color: "#7c3aed",
     price: 280,
-    fruitImg: "https://images.unsplash.com/photo-1596363505729-4190a9506133",
+    fruitImg:
+      "https://images.unsplash.com/photo-1596363505729-4190a9506133",
     bottle:
       "https://tse3.mm.bing.net/th/id/OIP.JTaD2Mpc4aXyoNxHwvaL5gHaHa?pid=Api&P=0&h=220",
   },
@@ -39,18 +42,21 @@ const fruits = [
     name: "Strawberry",
     color: "#e11d48",
     price: 290,
-    fruitImg: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6",
+    fruitImg:
+      "https://images.unsplash.com/photo-1464965911861-746a04b4bca6",
     bottle:
       "https://img.freepik.com/premium-photo/pink-bottle-with-strawberry-ai-generated_1112329-59239.jpg",
   },
 ];
 
-export default function FruitSlider() {
+export default function FritSlider() {
   const [index, setIndex] = useState(0);
   const [count, setCount] = useState(1);
   const [loaded, setLoaded] = useState(false);
 
-  // 🔥 Preload all images once
+  const current = fruits[index];
+  const nextFruit = fruits[(index + 1) % fruits.length];
+
   useEffect(() => {
     fruits.forEach((fruit) => {
       const img1 = new Image();
@@ -61,7 +67,6 @@ export default function FruitSlider() {
     });
   }, []);
 
-  // 🔥 Reset animation when slide changes
   useEffect(() => {
     setLoaded(false);
   }, [index]);
@@ -76,12 +81,15 @@ export default function FruitSlider() {
     setCount(1);
   };
 
-  const current = fruits[index];
-  const nextFruit = fruits[(index + 1) % fruits.length];
+  // 🛍️ Add to cart function
+  const addToCart = () => {
+    alert(`${current.name} added to cart 🛍️`);
+  };
 
   return (
-    <div className="container" style={{ "--bg-color": current.color }}>
+    <div className="container" style={{ background: current.color }}>
       <div className="wrapper">
+
         {/* LEFT */}
         <div className="left">
           <div className="fruit-circle">
@@ -96,7 +104,9 @@ export default function FruitSlider() {
               -
             </button>
             <span>{count}</span>
-            <button onClick={() => setCount((c) => c + 1)}>+</button>
+            <button onClick={() => setCount((c) => c + 1)}>
+              +
+            </button>
           </div>
 
           <h2>Rs: {current.price * count}</h2>
@@ -105,6 +115,11 @@ export default function FruitSlider() {
             <button onClick={prev}>Prev</button>
             <button onClick={next}>Next</button>
           </div>
+
+          {/* 🛍️ ADD TO CART BUTTON */}
+          <button className="cart-btn" onClick={addToCart}>
+            🛍️ Add to Cart
+          </button>
         </div>
 
         {/* CENTER */}
@@ -114,7 +129,10 @@ export default function FruitSlider() {
             alt={current.name}
             className="main-bottle"
             onLoad={() => setLoaded(true)}
-            style={{ opacity: loaded ? 1 : 0 }}
+            style={{
+              opacity: loaded ? 1 : 0,
+              transition: "opacity 0.4s ease",
+            }}
           />
         </div>
 
@@ -122,6 +140,7 @@ export default function FruitSlider() {
         <div className="right">
           <img src={nextFruit.bottle} alt="" className="next-bottle" />
         </div>
+
       </div>
     </div>
   );
